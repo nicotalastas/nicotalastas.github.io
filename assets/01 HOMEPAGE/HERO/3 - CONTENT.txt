@@ -1,0 +1,16 @@
+Headline
+
+I notice what gets overlooked.
+Then solve it so it’s worth looking at.
+
+Font size: 24
+Line spacing: 170%
+
+-----------------
+
+Sub Headline
+
+Visual Communication | Multimedia Designer
+
+Font size: 16
+Line height: 170%

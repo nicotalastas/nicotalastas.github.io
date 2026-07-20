@@ -1,0 +1,18 @@
+Headline
+
+[232121] Same eye, [232121]
+[FF6943]more rooms[FF6943][232121].[232121]
+
+Font Weight: SEMI-BOLD
+Font size: 40
+Line spacing: 112%
+
+-----------------
+
+Sub Headline
+
+[232121] Where the observing had to survive briefs, teammates, and people who saw the problem differently
+
+Font Weight: Regular
+Font size: 24
+Line height: 170%
