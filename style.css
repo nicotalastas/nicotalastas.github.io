@@ -1,0 +1,1838 @@
+/* ============================================================
+   FONTS
+   ============================================================ */
+@font-face {
+    font-family: 'Figtree';
+    src: url('assets/FONTS/static/Figtree-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Figtree';
+    src: url('assets/FONTS/static/Figtree-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+:root {
+    --text-primary: #C7B299; /* Requested beige color */
+    --brand-orange: #FF5A36;
+    --bg-dark: #232121;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+    font-family: 'Figtree', sans-serif;
+    color: var(--text-primary);
+    /* Lock to exactly one screen initially, but allow vertical scroll
+       now that we have sections below the landing page. */
+    width: 100%;
+    overflow-x: hidden;
+    background: var(--bg-dark);
+}
+
+/* ============================================================
+   HERO — fixed full-viewport stage
+   ============================================================ */
+.hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-dark); /* fills any bars outside the image */
+}
+
+/* ============================================================
+   BACKGROUND — cover the full viewport, edge to edge, no bars.
+   Image is 1728×1117 (ratio 1.547). On 16:9 monitors the image
+   fills by width, cropping a little top/bottom — same as every
+   CSS background-size:cover website. No bars, no scroll.
+   ============================================================ */
+.eyes-wrapper {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: var(--bg-dark);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.eyes-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* Mimic background-size: cover while maintaining a strict 16:9 aspect ratio 
+       so the absolutely positioned pupils never drift from the background holes! */
+    width: 100vw;
+    height: 56.25vw;
+    min-height: 100vh;
+    min-width: 177.77vh;
+}
+
+.eyes-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: url('assets/01 HOMEPAGE/HERO/1 - BG/EYES - BG.png');
+    background-size: 100% 100%;
+    z-index: 1;
+}
+
+.irises {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
+.eyes-mask {
+    position: absolute;
+    inset: 0;
+    background-image: url('assets/01 HOMEPAGE/HERO/1 - BG/EYES - HOLLOW.png');
+    background-size: 100% 100%;
+    z-index: 3;
+}
+
+.iris {
+    position: absolute;
+    /* Force a perfect circle — aspect-ratio ensures height = width in pixels
+       regardless of the container's 16:9 shape. */
+    aspect-ratio: 1 / 1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform-origin: center center;
+    will-change: transform;
+}
+
+/* ============================================================
+   HERO CONTENT — centered on screen, above background
+   ============================================================ */
+.hero-content {
+    position: absolute;
+    /* Shift cluster down to match Figma reference — logo near upper area,
+       button near lower area, same visual weight as the design. */
+    top: 53%; /* Pulled entire block up to match text and button height */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: auto;
+}
+
+/* Logo: sized by viewport height so it's consistent on all screens */
+.hero-logo {
+    /* Negative margin pulls tagline up close under the orange letters.
+       Logo PNG has ~7.5% transparent bottom, so -12vh accounts for that
+       and adds tight visual proximity like the Figma reference. */
+    margin-bottom: -10vh; /* Just a tiny nudge from the original -12vh */
+    transform: translateY(4vh); /* Pushed logo down individually, removed horizontal nudge */
+}
+
+.hero-logo img {
+    height: 55vh;
+    width: auto;
+    max-width: 85vw;
+    display: block;
+    filter: drop-shadow(0px 15px 25px rgba(0, 0, 0, 0.85));
+}
+
+.hero-text {
+    margin-bottom: 25px; /* Nudged the button upward to sit closer to the text */
+}
+
+.headline {
+    font-size: clamp(16px, 2.5vw, 24px); /* Fluid scaling down to mobile */
+    color: #C7B299;
+    line-height: 1.65;
+    font-weight: 400;
+    margin-bottom: 12px;
+}
+
+.sub-headline {
+    font-size: clamp(12px, 1.3vw, 16px);
+    color: var(--brand-orange);
+    letter-spacing: 0.5px;
+}
+
+/* CTA Button */
+.cta-button {
+    display: block;
+    width: clamp(200px, 20vw, 280px); /* Made the Look Again button larger */
+    height: clamp(54px, 5.5vw, 75px);
+    background-image: url('assets/01 HOMEPAGE/HERO/2 - BTTN/Property 1=bttn - look again - null.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cta-button:hover  { transform: scale(1.1); }
+.cta-button:active {
+    background-image: url('assets/01 HOMEPAGE/HERO/2 - BTTN/Property 1=bttn - look again - click.png');
+    transform: scale(0.95);
+}
+
+/* ============================================================
+   WORKS SECTIONS
+   ============================================================ */
+.individual-works {
+    background-color: #FFF7F5;
+    padding: 100px 8% 35px 15%; /* Increased left padding even further for a thicker margin */
+    min-height: 100vh;
+    position: relative;
+    z-index: 21; /* Elevated z-index so the drop shadow bleeds over the next section */
+}
+
+.collaborative-works {
+    background-color: #FFF7F5;
+    padding: 30px 8% 100px 15%; /* Increased left padding even further for a thicker margin */
+    min-height: 100vh;
+    position: relative;
+    z-index: 20;
+}
+
+.works-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Reduced to match the horizontal gap exactly */
+}
+
+.works-row {
+    display: flex;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.top-row {
+    gap: 20px;
+    /* align-items defaults to stretch so the text box matches Image 1's height */
+}
+
+.reverse-row {
+    flex-direction: row-reverse;
+}
+
+.bottom-row {
+    gap: 20px;
+}
+
+/* Text Column */
+.works-text {
+    flex: 437; /* Exactly matches the 437px width in the reference */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically centers the text within the row */
+    align-items: flex-start; /* Flush left alignment matching the desktop design */
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Ensure smooth nudging */
+}
+
+.text-right {
+    align-items: flex-end; /* Restored right alignment for desktop */
+    text-align: right;
+}
+
+.img-1 {
+    flex: 1035; /* Exact intrinsic width */
+}
+
+.img-2, .img-3 {
+    flex: 736; /* Exact intrinsic width */
+}
+
+.works-headline {
+    font-size: clamp(28px, 4vw, 40px); /* Fluid typography */
+    font-weight: 600; /* semi-bold */
+    line-height: 1.12; /* 112% */
+    color: #232121;
+    margin-bottom: 40px;
+}
+
+.works-headline .highlight {
+    color: #FF6943;
+}
+
+.works-subheadline {
+    font-size: clamp(16px, 2.5vw, 24px); /* Fluid typography */
+    font-weight: 400; /* regular */
+    line-height: 1.7; /* 170% */
+    color: #232121;
+}
+
+/* Gallery Grid Items */
+.work-item {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.creative-img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+.multiple-images {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.work-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0px 15px 30px rgba(0, 0, 0, 0.15)); /* Added elegant drop shadow */
+    /* Use scale for the visual 'zoom' effect */
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.4s ease;
+    transform-origin: center center;
+}
+
+/* 
+  Hover Effect: 
+  The image scales up slightly for a smooth 'pop' effect.
+  The adjacent elements are physically nudged using :has() to prevent overlap.
+*/
+.work-item:hover img {
+    transform: scale(1.03);
+    filter: drop-shadow(0px 25px 40px rgba(0, 0, 0, 0.25)); /* Shadow deepens on hover */
+}
+
+/* --- DESKTOP NUDGE EFFECTS (Horizontal & Vertical) --- */
+@media (min-width: 1025px) {
+    /* Nudge Effects for Individual Works (Image 1 is Top Right) */
+    .individual-works .works-container:has(.img-1:hover) .bottom-row {
+        transform: translateY(15px);
+    }
+    .individual-works .works-container:has(.img-2:hover) .img-3 {
+        transform: translateX(15px);
+    }
+    .individual-works .works-container:has(.img-3:hover) .img-1 {
+        transform: translateY(-15px);
+    }
+    .individual-works .works-container:has(.img-3:hover) .img-2 {
+        transform: translateX(-15px);
+    }
+
+    /* Nudge Effects for Collaborative Works (Image 1 is Top Left) */
+    .collaborative-works .works-container:has(.img-1:hover) .bottom-row {
+        transform: translateY(15px);
+    }
+    .collaborative-works .works-container:has(.img-2:hover) .img-3 {
+        transform: translateX(15px);
+    }
+    .collaborative-works .works-container:has(.img-2:hover) .img-1 {
+        transform: translateY(-15px);
+    }
+    .collaborative-works .works-container:has(.img-3:hover) .img-2 {
+        transform: translateX(-15px);
+    }
+}
+
+/* ============================================================
+   NAVIGATION — fixed pill navbar
+   ============================================================ */
+.navbar {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    padding: 0 40px;
+}
+
+.nav-content {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    aspect-ratio: 1608 / 111;
+    border-radius: 60px;
+    background-color: transparent;
+    backdrop-filter: blur(15px); /* Global glass blur effect, always active */
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+    z-index: 100;
+}
+
+.nav-content::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('assets/04 - NAVIGATION/Navigation bar - bg.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: inherit;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+
+.nav-content.dark-glass {
+    background-color: rgba(35, 33, 33, 0.7); /* Dark enough for contrast, transparent enough for glass */
+    border-color: rgba(255, 255, 255, 0.05); /* Very faint glass edge */
+    backdrop-filter: blur(15px); /* Actual glass blur effect */
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+.nav-content.dark-glass::before {
+    opacity: 0; /* Smoothly fades out the whitish image background */
+}
+
+.nav-logo-link {
+    position: absolute;
+    left: 4.22885%;
+    top: 26.126%;
+    transform: none;
+    width: 4.60199%;
+    height: 52.2522%;
+    display: block;
+    background-image: url('assets/04 - NAVIGATION/bttn - homepage.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.2s ease;
+    transform-origin: center center;
+    z-index: 1; /* Ensures it sits above the ::before pseudo-element */
+}
+.nav-logo-link:hover { transform: scale(1.05); }
+
+.nav-links {
+    position: absolute;
+    right: 4.5%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 1vw; /* Space between buttons */
+    height: 38%;
+    z-index: 1; /* Ensures links sit above the ::before pseudo-element */
+}
+
+.nav-btn {
+    display: inline-block;
+    height: clamp(18px, 2.55vw, 30px);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.2s ease;
+}
+
+.works-btn {
+    width: calc(clamp(18px, 2.55vw, 30px) * 3.366);
+    background-image: url('assets/04 - NAVIGATION/bttn - works - null.png');
+}
+.works-btn:hover  { transform: scale(1.05); }
+.works-btn:active, .works-btn.active { background-image: url('assets/04 - NAVIGATION/bttn - works - click.png'); }
+
+.contact-btn {
+    width: calc(clamp(18px, 2.55vw, 30px) * 4.293);
+    background-image: url('assets/04 - NAVIGATION/bttn - contact - null.png');
+}
+.contact-btn:hover  { transform: scale(1.05); }
+.contact-btn:active, .contact-btn.active { background-image: url('assets/04 - NAVIGATION/bttn - contact - click.png'); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+    background-color: #232121;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 40px; /* Reduced vertical padding for a sensible leeway */
+    z-index: 10;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Logo almost touching text */
+    justify-content: center;
+}
+
+.footer-logo img {
+    width: clamp(180px, 25vw, 330px); /* Made the logo significantly bigger but scales fluidly */
+    height: auto;
+    transition: transform 0.4s ease;
+}
+.footer-logo:hover img {
+    transform: scale(1.05);
+}
+
+.footer-text-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px; /* Increased gap so the button is lower from the text */
+    width: 100%;
+    max-width: 717px; /* Responsive: allows the block to shrink on smaller screens */
+    transform: translateY(-5px); /* Lowered back down slightly */
+}
+
+.footer-text {
+    font-size: clamp(20px, 3vw, 30px); /* Shrunk down from 40px, now fluidly scales */
+    font-weight: 400;
+    line-height: 1.5;
+    color: #C7B299; /* Muted tan color, except for highlight */
+}
+
+.footer-text .highlight {
+    color: #FF6943;
+    font-weight: 600;
+}
+
+.footer-btn {
+    display: inline-block;
+    width: 221px; /* Scaled up by 30% (from 170px) */
+    height: 52px; /* Scaled up by 30% (from 40px) */
+    background-image: url('assets/05 - FOOTER/bttn - tell me what - null.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+    transition: transform 0.2s ease, background-image 0.2s ease;
+}
+
+.footer-btn:hover {
+    background-image: url('assets/05 - FOOTER/bttn - tell me what - hover.png');
+    transform: scale(1.05);
+}
+
+.footer-btn:active {
+    background-image: url('assets/05 - FOOTER/bttn - tell me what - click.png');
+    transform: scale(0.95);
+}
+
+.footer-credits {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.sora-logo {
+    height: 48px; /* Doubled in size to be a prominent standalone mark */
+    opacity: 0.8; /* Increased visibility */
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+    .navbar { padding: 0 20px; }
+
+    .hero-logo img {
+        height: 35vh;
+        max-width: 85vw;
+    }
+    .hero-logo { 
+        margin-bottom: 20px; /* Give it breathing room instead of pulling text up */
+        transform: translateY(0); /* Reset the downward offset */
+    }
+    .headline  { font-size: 15px; }
+
+    /* Hide manual line breaks on mobile so text flows naturally as a single continuous block */
+    .headline br, .works-headline br, .works-subheadline br {
+        display: none;
+    }
+
+    /* Works Section Mobile Stacking */
+    .works-row {
+        flex-direction: column !important;
+        gap: 20px;
+    }
+    .works-text, .works-text.text-right {
+        align-items: flex-start; /* Force left alignment on mobile */
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    /* --- MOBILE NUDGE EFFECTS (Strictly Vertical) --- */
+    /* When img-1 hovers, push everything below it DOWN and text above it UP */
+    .works-container:has(.img-1:hover) .img-2,
+    .works-container:has(.img-1:hover) .img-3 {
+        transform: translateY(15px);
+    }
+    .works-container:has(.img-1:hover) .works-text {
+        transform: translateY(-15px);
+    }
+
+    /* When img-2 hovers, push img-3 DOWN and img-1/text UP */
+    .works-container:has(.img-2:hover) .img-3 {
+        transform: translateY(15px);
+    }
+    .works-container:has(.img-2:hover) .img-1,
+    .works-container:has(.img-2:hover) .works-text {
+        transform: translateY(-15px);
+    }
+
+    /* When img-3 hovers, push everything above it UP */
+    .works-container:has(.img-3:hover) .img-2,
+    .works-container:has(.img-3:hover) .img-1,
+    .works-container:has(.img-3:hover) .works-text {
+        transform: translateY(-15px);
+    }
+
+    /* Footer Mobile Stacking */
+    .footer {
+        flex-direction: column;
+    }
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+    .footer-text-block {
+        align-items: center;
+        transform: translateY(0);
+    }
+    .footer-text {
+        text-align: center;
+    }
+    /* Force the credits to drop below the button naturally on mobile */
+    .footer-credits {
+        position: static;
+        margin-top: 20px;
+        justify-content: center;
+    }
+    }
+}
+
+html:has(body.works-page-body) {
+    background-color: #FFF7F5 !important; /* Matches index.html Section 2 & 3 */
+}
+body.works-page-body {
+    background-color: #FFF7F5 !important; /* Matches index.html Section 2 & 3 */
+}
+
+.works-accordion-container {
+    max-width: 95%; /* Reverted to 95% since margin requests were specifically for the text */
+    margin: 0 auto;
+    padding: 110px 0 100px; /* Removed side padding since max-width naturally handles the edge gap */
+    display: flex;
+    flex-direction: column;
+    gap: 95px; /* Added 75px more spacing between all sections */
+}
+
+/* ── UTILITY CLASSES ── */
+.mobile-only {
+    display: none !important;
+}
+.desktop-only {
+    display: block !important;
+}
+
+/* ── Card base ── */
+.works-accordion-item {
+    border-radius: 20px;
+    overflow: hidden;
+    transition: background-color 0.4s ease;
+}
+.works-accordion-item.is-open {
+    overflow: hidden; /* Restored so the background image is perfectly cropped at the edge of the colored container! */
+}
+
+.beige-bg     { background-color: #EFE7DF; color: #232121; }
+.dark-bg      { background-color: #2A2A2A; color: #F4EFEB; }
+.dark-blue-bg { background-color: #1E2135; color: #F4EFEB; }
+.text-light   { color: #F4EFEB !important; }
+.text-c7b299  { color: #C7B299 !important; }
+.text-232121  { color: #232121 !important; }
+
+.accordion-inner {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── CLOSED STATE ── */
+.accordion-header {
+    display: flex;
+    align-items: stretch;
+    height: 390px; /* Fixed height matching 'How to Fumble' */
+    position: relative;
+    z-index: 1; /* Lower z-index so waving poster can sit behind the open content's flat poster */
+    cursor: pointer;
+}
+
+.header-text-content {
+    flex: 1;
+    position: relative;
+    z-index: 3; /* Keep text on top of everything */
+    padding: 51px 44px 36px 80px; /* Top padding increased by 15px, Left padding increased to 80px to push content right per user request */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Push text higher to leave space at the bottom for the read-more button */
+}
+
+/* Allow all desktop text columns to expand fully without wrapping and hiding the Read More button! */
+@media (min-width: 992px) {
+    .header-text-content {
+        flex: 2.2; 
+    }
+}
+
+.accordion-title {
+    font-size: clamp(28px, 4vw, 40px); /* Matches 'Here's where the noticing led' */
+    font-weight: 600;
+    line-height: 1.12;
+    margin-bottom: 24px; /* Increased spacing */
+    color: #F8F5F2; /* Kept default color */
+}
+
+.body-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    color: #C7B299; /* Requested beige color */
+}
+
+.push-down {
+    margin-top: 25px;
+}
+
+.accordion-subtitle {
+    color: #FF6943;
+    font-size: clamp(12px, 1.3vw, 16px); /* Matches 'Visual Comm | Multimedia Designer' */
+    font-weight: 400;
+    line-height: 1.7;
+    margin-bottom: 32px; /* Increased spacing significantly */
+    letter-spacing: 0.5px;
+}
+
+.accordion-preview-desc {
+    font-size: clamp(16px, 2.5vw, 24px); /* Matches 'Three problems I sat with...' */
+    font-weight: 400;
+    line-height: 1.55;
+    margin-bottom: 48px; /* Massive gap above the read more button */
+    max-width: 100%; /* Give it full width so manual <br> tags control the breaks */
+}
+
+/* ── Read More button ── */
+.read-more-btn {
+    z-index: 4;
+    width: 240px; /* Scaled up to match the wide Figma button */
+    height: 57px; /* Scaled up */
+    min-width: 240px; /* Guarantee it doesn't shrink! */
+    min-height: 57px;
+    flex-shrink: 0;
+    background-image: url('assets/02\ WORKS/bttn\ -\ Read\ more\ -\ null.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-image 0.2s ease;
+}
+.read-more-btn:hover {
+    background-image: url('assets/02\ WORKS/bttn\ -\ Read\ more\ -\ hover.png');
+    transform: scale(1.05);
+}
+.read-more-btn:active {
+    background-image: url('assets/02\ WORKS/bttn\ -\ Read\ more\ -\ click.png');
+    transform: scale(0.95);
+}
+
+/* ── Waving poster (bg image) column ── */
+.header-image-preview {
+    flex: 1.2;
+    position: relative;
+    overflow: visible; /* Let the image hang beyond the card */
+    z-index: 2; /* Put waving poster on top of flat poster */
+}
+
+.preview-bg-image {
+    position: absolute;
+    top: 5%; /* Drop it down so the red pin actually hits the creative 1 poster */
+    left: -35%;
+    width: 140%; /* Modestly larger than v80 to ensure overlap */
+    height: 400%;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: left top;
+    pointer-events: none;
+}
+
+.placeholder-preview {
+    background-color: rgba(0,0,0,0.1);
+}
+
+/* ── Standard background images for Sections 2-6 ── */
+.standard-bg-preview {
+    position: absolute;
+    top: 0;
+    left: -100%; /* Pull it across the text column */
+    width: 200%; /* Span the entire accordion header */
+    height: 100%;
+    background-size: auto 100%; /* Prevents cropping from the top/bottom */
+    background-position: right center;
+    background-repeat: no-repeat;
+    pointer-events: none;
+}
+
+/* Specific adjustment for Section 1 (How to Fumble) */
+#how-to-fumble .accordion-title,
+#how-to-fumble .accordion-preview-desc,
+#how-to-fumble .body-text,
+#how-to-fumble .highlight-headline {
+    color: #232121 !important;
+}
+
+#how-to-fumble .accordion-title {
+    font-weight: 600;
+    line-height: 1.12;
+}
+
+#how-to-fumble .accordion-subtitle {
+    color: #FF6943 !important;
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+#how-to-fumble .accordion-preview-desc,
+#how-to-fumble .body-text {
+    font-weight: 400;
+    line-height: 1.12;
+}
+
+#how-to-fumble .highlight-headline {
+    font-weight: 600;
+    line-height: 1.12;
+}
+
+#how-to-fumble .highlight {
+    color: #FF6943 !important;
+}
+
+/* Specific adjustment for Section 4 (BaHanda) Typography */
+#bahanda .accordion-title,
+#bahanda .accordion-preview-desc,
+#bahanda .body-text,
+#bahanda .highlight-headline {
+    color: #232121 !important;
+}
+
+#bahanda .accordion-title {
+    font-weight: 600;
+    line-height: 1.12;
+}
+
+#bahanda .accordion-subtitle {
+    color: #FF6943 !important;
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+#bahanda .accordion-preview-desc,
+#bahanda .body-text {
+    font-weight: 400;
+    line-height: 1.12;
+}
+
+#bahanda .highlight-headline {
+    font-weight: 600;
+    line-height: 1.12;
+}
+
+#bahanda .highlight {
+    color: #FF6943 !important;
+}
+#how-to-fumble .accordion-header {
+    height: 415px; /* Increased by another 15px (total 25px increase from the global 390px height) */
+}
+#how-to-fumble .accordion-preview-desc {
+    margin-bottom: 38px !important; /* Moved the 'Read more' button UP by 5px (from 43px to 38px) */
+}
+@media (min-width: 992px) {
+    #how-to-fumble .preview-bg-image {
+        width: 210% !important; /* Scaled down by 15% (from 225% to 210%) */
+        left: calc(-35% - 435px) !important; /* Moved right by another 45px (total -435px from standard) */
+        top: calc(5% - 60px) !important; /* Moved down by 30px (total -60px from standard) */
+    }
+}
+/* Allow the image to bleed out if it needs to */
+#how-to-fumble.works-accordion-item.is-open {
+    overflow: visible !important;
+}
+
+/* Specific adjustment for Section 2 (Siksikan) */
+#siksikan .accordion-header {
+    height: 435px; /* Increased by 30px from 405px per user request */
+}
+#siksikan .accordion-preview-desc {
+    margin-bottom: 43px !important; /* Move the 'Read more' button UP by 5px (from 48px to 43px) */
+}
+#siksikan .standard-bg-preview {
+    background-size: auto 100%; /* Image exactly fills its container */
+    background-position: right top;
+    background-repeat: no-repeat;
+    height: 240%; /* Make the div exactly 240% of the header height (+20% size as requested) */
+    position: relative;
+    top: -364px; /* Shift the div UP by exactly half the extra height to perfectly simulate 'center' alignment! (1248px - 520px) / 2 = 364px */
+    pointer-events: none;
+}
+
+/* Specific adjustment for Section 4 (Bahanda) */
+#bahanda .accordion-header {
+    height: 345px; /* Reduced by 25px from 370px per user request */
+}
+#bahanda .accordion-preview-desc {
+    margin-bottom: 41px !important; /* Pushed the button down by exactly 25px (from 16px to 41px) */
+}
+#bahanda .standard-bg-preview {
+    background-size: auto 100%;
+    background-position: right calc(50% - 15px); /* Moved down by 10px from -25px */
+    height: 169%; /* 370px * 1.69 = 625px. Keeps the image the exact same physical size as 160% on 390px! */
+}
+
+
+/* Force the image container to span the entire accordion width, so the massive image isn't clipped by the flex column boundary! */
+#bahanda .header-image-preview {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Sits behind the text (z-index: 3) */
+    pointer-events: none; /* Prevents the massive image container from stealing clicks from the Read More button! */
+}
+
+/* Let the massive background image burst out of the container bounds when opened, instead of being chopped off by the box edge! */
+#bahanda.works-accordion-item.is-open {
+    overflow: visible !important;
+}
+
+/* Specific adjustment for Section 5 (Nestly) */
+#nestly .standard-bg-preview {
+    background-size: 80% auto; /* Scaled down 10% more per user request */
+    background-position: right top; /* Pinned to top right */
+    background-repeat: no-repeat;
+    height: 300%; /* The missing key! Makes the div massively tall so the image can hang down invisibly, revealing itself smoothly when opened! */
+}
+
+
+/* Specific adjustment for Section 6 (Customer ID) */
+#customer-id {
+    background-color: #232121 !important;
+}
+#customer-id .accordion-header {
+    height: 410px; /* Increased by 20px from the global 390px per user request */
+}
+#customer-id .accordion-preview-desc {
+    margin-bottom: 33px !important; /* Move 'Read more' button DOWN by 20px (from 13px to 33px) */
+}
+#customer-id .standard-bg-preview {
+    background-size: auto 100%; 
+    background-position: right top;
+    background-repeat: no-repeat;
+    height: 126%; /* Scaled back down by another 10% (from 136% to 126%) per user request */
+    position: relative;
+    pointer-events: none;
+    z-index: 1; 
+}
+#customer-id .customer-image-grid img {
+    filter: drop-shadow(0 12px 30px rgba(0,0,0,0.2));
+}
+
+/* Specific adjustment for Section 3 (Magic) */
+#magic .accordion-header {
+    height: 460px; /* Increased by 15px from 445px per user request */
+}
+
+#magic {
+    background-color: #232121 !important;
+}
+
+#magic .accordion-preview-desc {
+    margin-bottom: 37px !important; /* Pushed the button down by exactly 25px (from 12px to 37px) */
+}
+
+#magic .header-text-content {
+    padding-bottom: 12px !important; /* Reduce bottom padding to give the button even more room! */
+}
+
+#magic .standard-bg-preview {
+    background-size: auto 100%; /* Image fills container */
+    background-position: calc(100% + 15px) top; /* Shifted slightly to the RIGHT to hide the baked-in image gap on the right edge */
+    background-repeat: no-repeat;
+    height: 216%; /* 460px * 2.16 = 993px. Keeps the image the exact same physical size! */
+    position: relative;
+    top: 25px; /* Moved DOWN by another 50px (was -25px, now +25px)! */
+    pointer-events: none;
+    z-index: 1; /* Ensure it stays behind the text */
+}
+
+/* Force the image container to span the entire accordion width, so the massive image isn't clipped by the flex column boundary! */
+#magic .header-image-preview {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Sits behind the text (z-index: 3) */
+}
+
+/* ── OPEN STATE ── */
+.accordion-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    /* z-index 2 so accordion content sits ABOVE the header (letting creative 1 sit on top of the waving poster) */
+    position: relative;
+    z-index: 2;
+}
+.works-accordion-item.is-open .accordion-content {
+    grid-template-rows: 1fr;
+}
+
+.accordion-content-inner {
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0 44px 0 80px; /* Thicker left margin */
+    filter: blur(10px);
+    opacity: 0;
+    transition: padding 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.3s ease, opacity 0.3s ease;
+}
+.works-accordion-item.is-open .accordion-content-inner {
+    padding: 24px 44px 51px 80px; /* Thicker left margin, bottom padding increased by 15px */
+    filter: blur(0px);
+    opacity: 1;
+    overflow: visible; /* Allow images to overlap the header when fully opened */
+    transition: padding 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Two-column area: flat poster (left) + body text (right) */
+.split-content {
+    display: flex;
+    gap: 32px;
+    width: 100%;
+    align-items: stretch; /* Both columns same height so creative-img bottom aligns with text bottom */
+}
+
+.left-col {
+    flex: 0 0 55%;
+    position: relative;
+    z-index: 1; /* Put flat poster behind the waving poster */
+    display: flex;
+    flex-direction: column;
+}
+
+.right-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end; /* Align to bottom so we can precisely control the offset */
+    text-align: right;
+    padding-top: 0;
+    padding-right: 15px; /* Shoved left by 15px per user request */
+}
+
+/* Let the text fill the column, and use a small positive margin to lift the last line above the drop shadow */
+.right-col p.body-text {
+    width: 100%;
+    margin: 0; /* Remove default margins so we can control them precisely */
+    white-space: nowrap; /* Force exactly the <br> line breaks! */
+}
+
+.right-col p.body-text:last-of-type {
+    margin-bottom: 250px; /* Applies the massive push ONLY to the bottom of the entire text block */
+}
+
+.how-to-fumble-p1 {
+    transform: translateY(-130px); /* Moved up by another 65px (total -130px) */
+}
+.how-to-fumble-p2 {
+    transform: translateY(-45px); /* Left as is */
+}
+.how-to-fumble-p3 {
+    transform: translateY(35px); /* Moved DOWN by 35px */
+}
+
+.creative-img {
+    width: 115%; /* Scaled down by 5% (from 120% to 115%) per user request */
+    flex: 1;              /* Grow to fill the left-col height */
+    min-height: 0;
+    object-fit: contain;  /* Maintain aspect ratio, no cropping */
+    object-position: top left; /* Anchor top-left so bottom aligns with right column */
+    display: block;
+    filter: drop-shadow(0 12px 30px rgba(0,0,0,0.2));
+    transform: none; /* Reset transform to align with the native 40px offset */
+}
+
+.body-text {
+    font-size: clamp(16px, 2.5vw, 24px); /* Matches 'Three problems I sat with...' */
+    font-weight: 400;
+    line-height: 1.55;
+    margin-bottom: 20px;
+    max-width: 100%; /* Removed hard constraint so explicit <br> tags control the layout entirely */
+}
+
+.full-width-content {
+    width: 100%;
+    margin-top: 15px; /* Decreased by another 35px to move the text and button UP per user request */
+    display: flex;
+    align-items: flex-end;       /* align headline and close btn to the same bottom baseline */
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.highlight-headline {
+    font-size: clamp(28px, 4vw, 40px); /* Matched to 'How to fumble' */
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: left;
+    transform: none; /* Reset transform to perfectly match the 40px native offset */
+    padding-left: 15px; /* Shoved right by 15px per user request */
+}
+
+.highlight-headline .highlight,
+.body-text .highlight {
+    color: #FF6943;
+}
+
+.close-indicator-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+    padding-right: 15px; /* Shoved left by 15px per user request */
+}
+
+.close-section-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    padding: 0;
+    flex-shrink: 0; /* Don't let the button get squished */
+}
+.close-section-btn img {
+    width: 92px;  /* Scaled up by 15% across all sections */
+    height: auto;
+    display: block;
+}
+.close-section-btn:hover {
+    transform: translateY(-4px);
+}
+
+/* --- MEDIA QUERIES --- */
+@media (max-width: 991px) {
+    .desktop-only {
+        display: none !important;
+    }
+    
+    .mobile-only {
+        display: block !important;
+    }
+
+    .accordion-header {
+        height: 520px; /* Matched to 'How to Fumble' mobile height */
+    }
+
+    .header-text-content {
+        justify-content: center; /* Preserve centered alignment on mobile */
+    }
+
+    .read-more-btn {
+        position: absolute;
+        bottom: 24px;
+        left: 20px; /* Match mobile padding */
+    }
+
+    #siksikan .standard-bg-preview {
+        background-size: auto 100%; /* Reset sizing for mobile */
+        background-position: right center;
+    }
+
+    /* Light page bg on mobile matches the reference */
+    body.works-page-body {
+        background-color: #FFF7F5 !important;
+    }
+}
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+
+    .mobile-only {
+        display: block !important;
+    }
+    .desktop-only {
+        display: none !important;
+    }
+
+    /* Light page bg on mobile matches the reference */
+    body.works-page-body {
+        background-color: #FFF7F5 !important;
+    }
+
+    .works-accordion-container {
+        max-width: 95%; /* Revert to the original mobile width to insulate from desktop margin tweaks */
+        padding: 90px 8px 120px; /* Increased bottom padding significantly per user request */
+        gap: 12px;
+    }
+
+    /* ── Closed card header ── */
+    .accordion-header {
+        min-height: 340px; /* Increased to make the mobile container more square-like */
+        padding-left: 24px; /* Nudge everything to the right */
+    }
+
+    .header-text-content {
+        flex: 1.4;
+        padding: 24px 16px 20px 16px;
+    }
+
+    .accordion-title {
+        margin-bottom: 12px; /* Increased spacing */
+    }
+
+    .accordion-subtitle {
+        font-size: 9.5px; /* Shrunk on mobile per user request */
+        margin-bottom: 24px; /* Increased spacing significantly */
+    }
+
+    .accordion-preview-desc {
+        line-height: 1.5;
+        margin-bottom: 24px; /* Increased spacing */
+        max-width: 100%;
+    }
+
+    .read-more-btn {
+        width: 170px; /* Exact width of the 'tell me what' footer button */
+        height: 40px; /* Exact height of the 'tell me what' footer button */
+    }
+
+    .header-image-preview {
+        flex: 1;
+        margin-left: 32px; /* Nudge preview images further to the right */
+    }
+
+    /* Mobile bg image: use a massive scale to match desktop proportions for BOTH opened and closed states. 
+       This ensures the poster looks the same and is just revealed when the card expands. */
+    .preview-bg-image {
+        top: -35%;
+        left: -115%; /* (100% - 330%) / 2 */
+        width: 330%;
+        height: 900%;
+        background-size: 100% auto;
+        background-position: left top;
+    }
+
+    /* Keep mask on container when open so the right side of the image gets cropped */
+    .works-accordion-item.is-open {
+        overflow: hidden;
+    }
+
+    /* ── Open state ── */
+    .accordion-content-inner {
+        padding: 0 16px; /* Reduced side padding to give text more width */
+    }
+    .works-accordion-item.is-open .accordion-content-inner {
+        padding: 24px 16px 48px; /* Reduced side padding */
+    }
+
+    .split-content {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .left-col {
+        flex: none;
+        width: 100%;
+        display: flex;
+        justify-content: center; /* Center the creative image */
+    }
+
+    .creative-img {
+        width: 90%; /* Made bigger per user request, but keeps some breathing room */
+        flex: none;
+        height: auto;
+        display: block;
+        margin: 0 0 0 24px; /* Perfectly aligns with the start of 'How to fumble' */
+        transform: none; /* Removed the nudge to align perfectly with texts */
+        object-fit: unset;
+        object-position: unset;
+    }
+
+    /* Right col: block display to allow auto margins to center fit-content children */
+    .right-col {
+        flex: none;
+        width: 100%;
+        display: block;
+        padding-top: 0;
+    }
+
+    .mobile-centered-right-text-container {
+        text-align: right; /* Restored right alignment per user request */
+        width: 100%; /* Take full width */
+        margin: 0; /* Removed center margins */
+        transform: none; /* Removed the offset */
+    }
+
+    .body-text {
+        max-width: 100%;
+    }
+
+    .mobile-centered-right-text-container .body-text {
+        text-align: inherit;
+        width: 100%;
+        max-width: none;
+    }
+
+    /* Full-width row: flex context to put headline left and button right */
+    .full-width-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        width: 100%;
+        margin-top: 24px;
+    }
+
+    .highlight-headline {
+        line-height: 1.25;
+        text-align: left; /* Flush left edge */
+        width: 100%; /* Take full width */
+        margin: 0 0 0 24px; /* Perfectly aligns with the start of 'How to fumble' */
+        transform: none; /* Reset the desktop transform so it doesn't push off-screen */
+    }
+
+    .close-section-btn {
+        position: static; /* Let it sit in the flex container naturally */
+        transform: translateY(24px); /* Pushed downwards so the arrow tip aligns with the 'communication anyway' text line */
+    }
+
+    .close-section-btn img {
+        width: 83px; /* Scaled up by 15% on mobile */
+    }
+
+    /* ── BaHanda & Nestly: stack the two-column rows on mobile instead of squishing them ── */
+    .bahanda-row,
+    .nestly-row {
+        flex-direction: column !important;
+        gap: 24px;
+    }
+
+    .bahanda-row.align-bottom {
+        align-items: center !important;
+    }
+
+    .bahanda-col-left,
+    .bahanda-col-right,
+    .nestly-col-left,
+    .nestly-col-right {
+        width: 100%;
+        align-items: center !important;
+    }
+
+    .bahanda-img-1 {
+        margin: 0 auto 24px !important;
+    }
+
+    .bahanda-img-2 {
+        margin: 0 auto !important;
+        max-width: 260px !important;
+    }
+
+    .bahanda-img-3 {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+    }
+
+    .bahanda-col-right.row-3-right {
+        flex-direction: row !important;
+        justify-content: center !important;
+        gap: 24px;
+    }
+
+    #nestly .nestly-col-right {
+        position: relative;
+        min-height: 340px;
+        margin-top: 16px;
+    }
+
+    #nestly .nestly-img-2 {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        max-width: 320px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    #nestly .close-section-btn {
+        position: static !important;
+        margin: 24px auto 0;
+    }
+}
+
+.siksikan-layout {
+    display: flex;
+    flex-direction: column;
+}
+.works-accordion-item.is-open .siksikan-layout {
+    padding-top: 70px !important; /* Set to 70px so that with the 45px upward image shift, the visual gap is exactly 25px! */
+    padding-bottom: 80px; /* Added breathing room at the bottom of the open container per user request! */
+    width: 100%;
+}
+
+.siksikan-images-row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px; /* Reduced gap to exactly 10px */
+    width: 100%;
+    margin-bottom: -20px; /* Negative margin pulls the text block up so the visual gap to the transformed images is exactly 25px! */
+}
+
+.siksikan-img {
+    flex: 1;
+    width: 25%;
+    object-fit: contain;
+    border-radius: 12px;
+    filter: drop-shadow(0 12px 30px rgba(0,0,0,0.2));
+    transform: translate(-5px, -45px) scale(0.95); /* Moved left by 5px, up by 45px, scaled to 0.95 */
+}
+
+.siksikan-text-block {
+    max-width: 100%; /* Allow text to stretch fully so manual <br> tags dictate layout */
+    margin-bottom: 32px; /* Ensure uniform spacing between all text blocks */
+    text-align: left;
+}
+
+.siksikan-text-block .body-text {
+    margin: 0; /* Remove default paragraph margins so spacing is strictly controlled by wrapper */
+}
+
+.siksikan-highlight-block {
+    max-width: 100%; /* Allow text to stretch fully so manual <br> tags dictate layout */
+    margin-bottom: 32px; /* Ensure uniform spacing exactly matching the block above */
+    text-align: left;
+}
+
+.siksikan-highlight-block .highlight-headline {
+    margin: 0; /* Remove default heading margins */
+    text-align: left;
+    padding-left: 0; /* Remove the 15px offset from the general class to perfectly align with the other text blocks */
+}
+
+.siksikan-final-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Align bottom baselines */
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.siksikan-close-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    width: auto; /* Changed from 100% to let it sit alongside the text */
+}
+
+.siksikan-final-row .close-section-btn {
+    transform: translateY(22px); /* Shove the button down so the top point aligns precisely with the text line */
+}
+
+/* ============================================================
+   MAGIC (SECTION 3) OPENED LAYOUT
+   ============================================================ */
+.magic-layout-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Push content to bottom */
+    width: 100%;
+}
+.works-accordion-item.is-open .magic-layout-container {
+    /* Padding is now handled by a physical spacer in the HTML so it smoothly animates without snapping! */
+}
+
+.magic-bottom-content {
+    position: relative;
+    z-index: 2; /* Sit on top of the grid if they overlap */
+    width: 100%;
+    transform: translateY(-15px); /* Moved entire block up by 15px per user request */
+}
+
+.magic-highlight-block {
+    text-align: left;
+    margin-bottom: 32px;
+}
+
+.magic-text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align the text blocks to the left */
+    width: 100%;
+    max-width: 100%; /* Allow full width so manual line breaks dictate the exact format */
+}
+
+.magic-text-content .highlight-headline,
+.magic-text-content .body-text {
+    text-align: left; /* Left align the text per user request */
+    padding: 0;
+    margin: 0;
+}
+
+.magic-highlight-block {
+    margin-bottom: 32px;
+    width: 100%;
+}
+
+.magic-final-row {
+    display: flex;
+    justify-content: center; /* Center everything */
+    align-items: flex-end;
+    width: 100%;
+    position: relative; /* So we can absolutely position the close button to the right */
+}
+
+.magic-text-block {
+    text-align: left;
+    width: 100%;
+}
+
+/* ============================================================
+   CUSTOMER ID (SECTION 6) OPENED LAYOUT
+   ============================================================ */
+.customer-layout-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+.works-accordion-item.is-open .customer-layout-container {
+    padding-top: 0px !important; /* Moved entire opened content UP by another 10px (from 10px to 0px) */
+    padding-bottom: 80px !important; /* Some breathing room before it closes */
+}
+
+/* ==========================================================================
+   BAHANDA SECTION (SECTION 4) CUSTOM LAYOUT
+   ========================================================================== */
+.bahanda-layout-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-right: 8%; /* Pushes the right side content to the left a bit */
+    padding-bottom: 80px; /* Added breathing room at the bottom of the section */
+}
+.works-accordion-item.is-open .bahanda-layout-container {
+    padding-top: 100px !important; /* Forces a ~75px drop from the default 24px padding ONLY when open! */
+}
+
+
+.bahanda-row {
+    display: flex;
+    width: 100%;
+    gap: 32px;
+}
+
+.bahanda-row.align-bottom {
+    align-items: flex-end; /* This forces the bottom of the left col (text) to align with bottom of right col (image) */
+}
+
+.bahanda-col-left {
+    flex: 1; /* Allow it to stretch naturally to fit the text line breaks */
+    display: flex;
+    flex-direction: column;
+    min-width: 0; /* Prevent white-space:nowrap text from forcing this column wider than its flex share */
+}
+
+.bahanda-col-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0; /* Same fix, keeps the 50/50 split even with nowrap siblings */
+}
+
+.bahanda-col-right.flex-bottom {
+    justify-content: flex-end; /* Pushes content in right col to the bottom if row is tall */
+}
+
+.bahanda-col-right.row-3-right {
+    flex-direction: row; /* Put Image 4 and Close button side by side */
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.bahanda-close-wrapper {
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   NESTLY SECTION (SECTION 5) CUSTOM LAYOUT
+   ========================================================================== */
+.nestly-layout-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.nestly-row {
+    display: flex;
+    width: 100%;
+    gap: 32px;
+    align-items: stretch; /* Make both columns same height */
+}
+
+.nestly-col-left {
+    flex: 1; /* Allow it to stretch naturally to fit the text line breaks */
+    display: flex;
+    flex-direction: column;
+    min-width: 0; /* Prevent white-space:nowrap text from forcing this column wider than its flex share */
+    /* No padding-left so text aligns with the header/unopened state */
+}
+
+.nestly-col-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0; /* Same fix, keeps phone-mockup column at its intended 50% width */
+    position: relative;
+}
+
+.nestly-img-2-wrapper {
+    position: absolute;
+    top: 32px; /* Aligns with line 2 of text */
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.nestly-img-2 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Forces the image to fill the right column, touching the exact middle boundary */
+    object-position: left top; /* Anchors the image to the left edge (middle of the screen) */
+}
+
+.nestly-close {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translateY(22px);
+}
+
+.magic-final-row .close-section-btn {
+    transform: translateY(22px); /* Align the point of the arrow exactly with the last line of text */
+}
+
+/* ==========================================================================
+   CONTACT PAGE STYLES
+   ========================================================================== */
+
+.contact-page-body {
+    background-color: #232121;
+    color: #c7b299;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+.contact-irises {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Place explicitly ON TOP of the background images */
+    pointer-events: none;
+}
+
+/* Background Eyes Overlay (Combined into one layer to guarantee iris tracking alignment) */
+/* Background Eyes Overlay (Combined into one layer to guarantee iris tracking alignment) */
+.contact-eyes-overlay {
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 65px); /* Shaved off another 15px */
+    top: -5px; /* Nudged up by -5px */
+    background-image: url('assets/03 CONTACT/EYES BG - TOP.png'), url('assets/03 CONTACT/EYES BG - BTTM.png');
+    background-size: 100% 100%, 100% 100%;
+    background-position: top left, bottom left;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+#contact-irises {
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 65px); /* Matches overlay perfectly */
+    top: -5px; /* Matches overlay perfectly */
+    z-index: 1; /* Keep irises explicitly ON TOP */
+    pointer-events: none;
+}
+
+/* Navbar overrides if needed */
+.contact-navbar {
+    position: relative;
+    z-index: 10;
+}
+
+/* Main Layout */
+.contact-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute; /* Place over the background */
+    top: 0;
+    left: 0;
+    z-index: 5;
+    padding: 0 40px;
+}
+
+.contact-container {
+    position: relative;
+    z-index: 10; /* Force it to render ABOVE the absolute background images */
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Changed from stretch to center to prevent height distortion/cropping */
+    gap: 60px;
+    max-width: 1400px; /* Made container wider so image can be larger */
+    width: 100%;
+}
+
+.contact-left {
+    flex: 0 0 50%; /* Image column is now significantly larger */
+    display: flex;
+}
+
+.contact-photo {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    object-fit: contain; /* Ensure 100% of the image is visible */
+    transform: translate(-15px, 25px) scale(1.07); /* Moved left by 15px, down by 25px, and scaled to 1.07 */
+}
+
+.contact-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.contact-right .body-text {
+    margin-bottom: 24px;
+    line-height: 1.6;
+    font-size: clamp(16px, 2.5vw, 24px); /* Matched to .works-subheadline */
+    white-space: nowrap; /* Forces exactly the <br> line breaks without auto-wrapping */
+    color: #C7B299; /* Requested beige color */
+}
+
+.contact-highlight {
+    font-size: clamp(28px, 4vw, 40px); /* Matched to .works-headline */
+    font-weight: 500;
+    color: #C7B299; /* Requested beige color */
+    margin-top: 20px; /* Increased from 10px to push down by 10px */
+    margin-bottom: 40px; /* Increased from 30px to push email and logos down by 10px */
+    padding-left: 0; /* Override the 15px padding inherited from .highlight-headline */
+    margin-left: 0;
+}
+
+.contact-email {
+    color: #FF6943;
+    font-size: clamp(12px, 1.3vw, 16px); /* Matched to .sub-headline */
+    margin-bottom: 40px; /* Increased from 30px to push logos down by 10px */
+}
+
+.contact-socials {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Exact 15px space requested between icons */
+}
+
+.social-btn {
+    background-color: #FF6943;
+    width: 65px; /* Scaled up even more */
+    height: 65px; /* Scaled up even more */
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.social-btn:hover {
+    transform: scale(1.1); /* Enlarges smoothly instead of moving up */
+}
+
+.social-btn img {
+    width: 100%; /* Take up the full size of the container */
+    height: 100%;
+    object-fit: contain;
+}
+
+/* SORA Mark */
+.sora-mark {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 10;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12.5px; /* Scaled up by 25% */
+    color: rgba(199, 178, 153, 0.4);
+}
+
+.sora-mark img {
+    height: 36px; /* Scaled up by an additional 45% */
+    width: auto;
+    opacity: 0.4;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 991px) {
+    .contact-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .contact-left {
+        flex: none;
+        width: 100%;
+    }
+    
+    .sora-mark {
+        position: relative;
+        bottom: 0;
+        right: 0;
+        justify-content: center;
+        margin-top: 60px;
+    }
+}

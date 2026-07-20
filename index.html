@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NiCo - Visual Communication | Multimedia Designer</title>
+    <meta name="description" content="I notice what gets overlooked. Then solve it so it's worth looking at.">
+    <link rel="stylesheet" href="style.css?v=6">
+</head>
+<body id="top">
+
+    <!-- ── NAVIGATION BAR ── -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo-link" aria-label="Homepage"></a>
+            <div class="nav-links">
+                <a href="works.html"   class="nav-btn works-btn"></a>
+                <a href="contact.html" class="nav-btn contact-btn"></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ── HERO: height locked to background image aspect ratio ── -->
+    <main class="hero">
+
+        <!-- Background layers live INSIDE hero so they share the same dimensions -->
+        <div class="eyes-wrapper">
+            <div class="eyes-container">
+                <div class="eyes-overlay"></div>
+                <div class="irises" id="irises"></div>
+                <div class="eyes-mask"></div>
+            </div>
+        </div>
+
+        <!-- Content centered inside the hero -->
+        <div class="hero-content">
+            <div class="hero-logo">
+                <img src="assets/01 HOMEPAGE/HERO/4 - NICO HERO LOGO.png" alt="NiCo">
+            </div>
+            <div class="hero-text">
+                <p class="headline">I notice what gets overlooked. <br>Then solve it so it's worth looking at.</p>
+                <p class="sub-headline">Visual Communication | Multimedia Designer</p>
+            </div>
+            <a href="#works" class="cta-button" aria-label="Look Again"></a>
+        </div>
+
+    </main>
+
+    <!-- ── INDIVIDUAL WORKS SECTION ── -->
+    <section class="individual-works" id="works">
+        <div class="works-container">
+            <div class="works-row top-row">
+                <div class="works-text">
+                    <div class="works-text-inner">
+                        <h2 class="works-headline">Here's where <br>the <span class="highlight">noticing</span> led.</h2>
+                        <p class="works-subheadline">Three problems I sat with <br>a little longer than most <br>people would.</p>
+                    </div>
+                </div>
+                <a href="works.html#how-to-fumble" class="work-item img-1">
+                    <img src="assets/01 HOMEPAGE/SECTION 1 - INDIVIDUAL WORKS/image 1.png" alt="How to fumble - Editorial Poster">
+                </a>
+            </div>
+            <div class="works-row bottom-row">
+                <a href="works.html#siksikan" class="work-item img-2">
+                    <img src="assets/01 HOMEPAGE/SECTION 1 - INDIVIDUAL WORKS/image 2.png" alt="SIKSIKAN - Poster Series">
+                </a>
+                <a href="works.html#magic" class="work-item img-3">
+                    <img src="assets/01 HOMEPAGE/SECTION 1 - INDIVIDUAL WORKS/image 3.png" alt="Magic - Ad Campaigns">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── COLLABORATIVE WORKS SECTION ── -->
+    <section class="collaborative-works">
+        <div class="works-container">
+            <div class="works-row top-row reverse-row">
+                <div class="works-text text-right">
+                    <div class="works-text-inner">
+                        <h2 class="works-headline">Same eye, <br><span class="highlight">more rooms</span>.</h2>
+                        <p class="works-subheadline">Where the observing had to <br>survive briefs, teammates, <br>and people who saw the <br>problem differently</p>
+                    </div>
+                </div>
+                <a href="works.html#bahanda" class="work-item img-1">
+                    <img src="assets/01 HOMEPAGE/SECTION 2 - COLLABORATIVE WORKS/image 1.png?v=2" alt="BaHanda - Campaign | Capstone">
+                </a>
+            </div>
+            <div class="works-row bottom-row">
+                <a href="works.html#nestly" class="work-item img-2">
+                    <img src="assets/01 HOMEPAGE/SECTION 2 - COLLABORATIVE WORKS/image 2.png?v=2" alt="Nestly - Rental Mobile App">
+                </a>
+                <a href="works.html#customer-id" class="work-item img-3">
+                    <img src="assets/01 HOMEPAGE/SECTION 2 - COLLABORATIVE WORKS/image 3.png?v=2" alt="Customer ID - Simulation Game">
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- ── FOOTER ── -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <a href="#top" class="footer-logo" aria-label="Back to top">
+                <img src="assets/05 - FOOTER/Logo - PAG CLINICK TOP OF THE PAGE ULI.png" alt="NiCo Logo">
+            </a>
+            <div class="footer-text-block">
+                <p class="footer-text">You made it to the bottom.<br>That means you noticed <span class="highlight">something</span> too.</p>
+                <a href="contact.html" class="footer-btn"></a>
+            </div>
+        </div>
+        <div class="footer-credits">
+            <img src="assets/05 - FOOTER/SORA MARK.png" alt="SORA" class="sora-logo">
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

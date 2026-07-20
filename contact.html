@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NiCo - Contact</title>
+    
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts: Inter and Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css?v=42">
+</head>
+<body id="top" class="contact-page-body">
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="nav-content dark-glass">
+            <a href="index.html" class="nav-logo-link" aria-label="Homepage"></a>
+            <div class="nav-links">
+                <a href="works.html" class="nav-btn works-btn"></a>
+                <a href="contact.html" class="nav-btn contact-btn active"></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTACT CONTENT (Exactly matching Landing Page architecture) -->
+    <main class="hero contact-hero">
+        
+        <!-- Eyes Background System -->
+        <div class="eyes-wrapper">
+            <div class="eyes-container">
+                <!-- Background with transparent holes sits BEHIND the irises -->
+                <div class="contact-eyes-overlay"></div>
+                <!-- Irises sit ON TOP of the white eye shapes -->
+                <div id="contact-irises" class="irises"></div>
+            </div>
+        </div>
+
+        <div class="contact-wrapper">
+            <div class="contact-container">
+                <div class="contact-left">
+                    <img src="assets/03 CONTACT/3 - contact - image 1.png" alt="NiCo" class="contact-photo">
+                </div>
+                
+                <div class="contact-right">
+                    <p class="body-text">
+                        I notice things before anyone asks me to.<br>
+                        A wall no one used. A word that quietly turned into an insult. A<br>
+                        reply sent too fast to mean it.
+                    </p>
+                    <p class="body-text push-down">
+                        Most of what I've built started as something small enough to<br>
+                        walk past. I didn't.
+                    </p>
+                    
+                    <h3 class="highlight-headline contact-highlight">
+                        Let's build something <span class="highlight">worth noticing.</span>
+                    </h3>
+                    
+                    <p class="contact-email">
+                        email: nicotalastas@gmail.com
+                    </p>
+                    
+                    <div class="contact-socials">
+                        <a href="https://www.behance.net/nicotalastas" target="_blank" rel="noopener noreferrer" aria-label="Behance" class="social-btn">
+                            <img src="assets/03 CONTACT/bxl-behance.png" alt="Behance">
+                        </a>
+                        <a href="https://www.linkedin.com/in/nicotalastas/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-btn">
+                            <img src="assets/03 CONTACT/bxl-linkedin.png" alt="LinkedIn">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- SORA MARK (Bottom Right) -->
+    <div class="sora-mark">
+        <img src="assets/03 CONTACT/SORA MARK.png" alt="SORA">
+    </div>
+
+    <!-- SCRIPT (Handles the tracking irises) -->
+    <script src="script.js"></script>
+</body>
+</html>
