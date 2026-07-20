@@ -1,0 +1,47 @@
+Headline
+
+[C7B299] Magic [C7B299]
+
+Font Weight: SEMI-BOLD
+Font size: 40
+Line spacing: 112%
+
+-----------------
+
+Sub Headline 1
+
+[FF6943][Regular]Meta Ad Campaigns | Paid Performance Creative |[Regular][Semi Bold] getmagic.com — Ongoing, 5+ years
+
+Font Weight: Regular - Semi Bold
+Font size: 16
+Line height: 170%
+
+-----------------
+
+Sub Headline 2
+
+[C7B299] Over five years running paid ads for getmagic.com, I learned the same lesson from a different angle every time: the "right" ad doesn't exist but only the right ad for this person, at this funnel stage, on this platform. [C7B299]
+
+Font Weight: Regular
+Font size: 24
+Line spacing: 112%
+
+------------------
+
+Highlight
+
+[C7B299] I don't just execute ads, [C7B299][FF6943]I own the thinking behind them.[FF6943][C7B299].[C7B299]
+
+Font Weight: SEMI-BOLD
+Font size: 40
+Line spacing: 112%
+
+-----------------
+
+Body 1
+
+[C7B299]Concept, art direction, and final static build all run through me, campaign after campaign, vertical after vertical. That ownership is what lets the same product show up as five different ads: an unconvinced cold hook here, a ready-to-convert final push there, each one built for exactly how far along that person already is.[C7B299]
+
+Font Weight: Regular
+Font size: 24
+Line spacing: 112%
