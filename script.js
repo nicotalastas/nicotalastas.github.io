@@ -31,8 +31,7 @@ const eyeHoles = [
     { x:  9.6094, y: 93.2407, w: 19.2188, h: 13.3333, size: 'BIG' },  // bottom left most
     { x: 43.0208, y: 95.0926, w: 15.8333, h:  9.6296, scale: 1.4 },  // Down left from Look Again, enlarged
     { x: 25.7552, y: 95.6019, w:  7.8646, h:  7.1296 },  // 151x77px
-    { x: 74.4010, y: 96.0648, w: 10.1562, h:  7.6852 },  // 195x83px
-    { x: 23.3, y: 74, w: 10, h: 5.5, size: 'HUGE' }
+    { x: 74.4010, y: 96.0648, w: 10.1562, h:  7.6852 }  // 195x83px
 ];
 
 const contactEyeHoles = [
